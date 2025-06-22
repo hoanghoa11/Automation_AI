@@ -1,16 +1,33 @@
-# Tải về các thư viện và web hỗ trợ
-- Tải về chromedriver.exe version phù hợp: https://googlechromelabs.github.io/chrome-for-testing/#stable
-- Tải Selenium Java trên Maven Repository: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-- Link tải IntelliJ Community: (nhớ tải bản Community vì nó miễn phí): https://www.jetbrains.com/idea/download/#section=windows
-# Cài đặt môi trường Java trên Windows
-- Cài đặt JDK (Java Development Kit)(Chọn loại file exe/msi)
-- Cấu hình biến môi trường JAVA_HOME.
-#  Cài đặt môi trường Maven trên Windows 
-- Link: https://maven.apache.org/download.cgi
-- Để cài đặt và sử dụng Maven, trước tiên chúng ta cần đảm bảo máy tính đã cài sẵn JDK và đã cấu hình biến môi trường JAVA_HOME.
-- Cài đặt biến môi trường cho Maven: MAVEN_HOME
-#  Cài đặt Allure Report trong Selenium Java
-- Link: https://github.com/allure-framework/allure2/releases
-- Tạo biến môi trường với setup biến môi trường ALLURE_HOME
-  ![image](https://github.com/user-attachments/assets/1838c758-2b8b-402d-878f-42294a489e68)
+#
+
+
+🧰 BƯỚC 1: Cài đặt OpenCV cho Java  
+## ✅ Tải thư viện OpenCV
+Vào trang chính: https://opencv.org/releases
+Giải nén, vào thư mục opencv/build/java/ → bạn sẽ thấy file opencv-xxx.jar và thư mục x64/ (chứa file .dll hoặc .so).
+## ✅ Thêm vào project:
+Thêm opencv-xxx.jar vào thư viện project Java (nếu dùng IDE như IntelliJ/Eclipse).
+Cấu hình VM options để Java biết đường dẫn file .dll:
+-Djava.library.path="path/to/opencv/build/java/x64"
+📌 Ví dụ IntelliJ:
+Vào Run > Edit Configurations > VM options → dán dòng trên.
+Nếu là project Maven thì thêm dòng này vào file pom.xml
+"<!-- https://mvnrepository.com/artifact/org.bytedeco/opencv-platform -->
+<dependency>
+    <groupId>org.bytedeco</groupId>
+    <artifactId>opencv-platform</artifactId>
+    <version>4.10.0-1.5.11</version>
+</dependency>"
+
+
+# 🧪 BƯỚC 2: Viết code so sánh ảnh UI
+✅ Ảnh cần:
+baseline.png (ảnh UI đúng).
+
+current.png (ảnh UI hiện tại bạn chụp bằng Selenium).
+
+✅ Code so sánh ảnh (Java + OpenCV):
+
+# 📸 BƯỚC 3: Dùng Selenium chụp giao diện (current.png)
+
 
