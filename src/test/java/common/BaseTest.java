@@ -1,5 +1,6 @@
 package common;
 
+import com.epam.healenium.SelfHealingDriver;
 import com.hoa.drivers.DriverManager;
 import com.hoa.helpers.CaptureHelper;
 import com.hoa.helpers.PropertiesHelper;

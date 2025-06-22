@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: healenium
+      POSTGRES_USER: healenium
+      POSTGRES_PASSWORD: healenium
+
+  hlm-backend:
+    image: healenium/hlm-backend:3.4.8
+    container_name: hlm-backend
+    ports:
+      - "7878:7878"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CONFIG_LOCATION=classpath:/,optional:classpath:/application-docker.properties
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/healenium?currentSchema=healenium
+      - SPRING_DATASOURCE_USERNAME=healenium
+      - SPRING_DATASOURCE_PASSWORD=healenium
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA=healenium
+      - SPRING_LIQUIBASE_DEFAULT_SCHEMA=healenium
+    depends_on:
+      - postgres
+
+  selector-imitator:
+    image: healenium/hlm-selector-imitator:1.6
+    container_name: hlm-selector-imitator
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVER_PORT=5000
+
+volumes:
+  postgres-data:
